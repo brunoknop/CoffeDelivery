@@ -26,7 +26,7 @@ const AddressAndPaymentContainerBase = styled.div`
   padding: 2.5rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: 2rem;
   align-self: stretch;
 
   border-radius: 6px;
@@ -39,10 +39,61 @@ export const PaymentContainer = styled(AddressAndPaymentContainerBase)`
   margin-top: 0.75rem;
 `
 
+export const AddressForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+
+  div {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  input {
+    display: flex;
+    padding: 12px;
+    width: 100%;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid ${(props) => props.theme['base-button']};
+    background: ${(props) => props.theme['base-input']};
+    color: ${(props) => props.theme['base-text']};
+    font-size: 0.875rem;
+    line-height: 130%;
+  }
+
+  #cep,
+  #numero,
+  #bairro {
+    width: 12.5rem;
+    flex-shrink: 0;
+  }
+
+  #uf {
+    width: 3.75rem;
+    flex-shrink: 0;
+  }
+
+  input::placeholder {
+    color: ${(props) => props.theme['base-label']};
+    font-size: 0.875rem;
+    line-height: 130%;
+  }
+`
+
 export const Description = styled.form`
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
+
+  .addressIcon {
+    color: ${(props) => props.theme['yellow-dark']};
+  }
+
+  .paymentIcon {
+    color: ${(props) => props.theme.purple};
+  }
 `
 
 export const OrderDetailsContainer = styled.div``

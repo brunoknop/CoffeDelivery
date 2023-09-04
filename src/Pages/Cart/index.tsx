@@ -1,6 +1,7 @@
 import {
   AddressAndPaymentContainer,
   AddressContainer,
+  AddressForm,
   Description,
   DescriptionPrice,
   FinishOrderButton,
@@ -31,16 +32,33 @@ export function Cart() {
         <h2>Complete seu pedido</h2>
         <AddressContainer>
           <Description>
-            <MapPinLine size={22} />
+            <MapPinLine size={22} className="addressIcon" />
             <div>
               <p>Endereço de entrega</p>
               <span>Informe o endereço onde deseja receber seu pedido</span>
             </div>
           </Description>
+          <AddressForm>
+            <div>
+              <input type="text" id="cep" placeholder="CEP" />
+            </div>
+            <div>
+              <input type="text" id="rua" placeholder="Rua" />
+            </div>
+            <div>
+              <input type="text" id="numero" placeholder="Numero" />
+              <input type="text" id="complemento" placeholder="Complemento" />
+            </div>
+            <div>
+              <input type="text" id="bairro" placeholder="Bairro" />
+              <input type="text" id="cidade" placeholder="Cidade" />
+              <input type="text" id="uf" placeholder="UF" maxLength={2} />
+            </div>
+          </AddressForm>
         </AddressContainer>
         <PaymentContainer>
           <Description>
-            <CurrencyDollarSimple size={22} />
+            <CurrencyDollarSimple size={22} className="paymentIcon" />
             <div>
               <p>Pagamento</p>
               <span>
