@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 export const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
 
   h2 {
     color: ${(props) => props.theme['base-subtitle']};
@@ -14,10 +15,35 @@ export const MainContainer = styled.div`
   }
 `
 
-export const AddressAndPaymentContainer = styled.div``
-export const AddressContainer = styled.form``
-export const PaymentContainer = styled.div``
-export const Description = styled.form``
+export const AddressAndPaymentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
+const AddressAndPaymentContainerBase = styled.div`
+  display: flex;
+  padding: 2.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+
+  border-radius: 6px;
+  background: ${(props) => props.theme['base-card']};
+`
+
+export const AddressContainer = styled(AddressAndPaymentContainerBase)``
+
+export const PaymentContainer = styled(AddressAndPaymentContainerBase)`
+  margin-top: 0.75rem;
+`
+
+export const Description = styled.form`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+`
 
 export const OrderDetailsContainer = styled.div``
 
@@ -30,87 +56,105 @@ export const OrderDetails = styled.div`
   background: ${(props) => props.theme['base-card']};
 `
 
-export const OrderItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid ${(props) => props.theme['base-button']};
-
-  + div {
-    padding-top: 1.5rem;
-  }
-
-  img {
-    width: 64px;
-    height: 64px;
-  }
-`
-export const ItemContent = styled.div`
+const DescriptionAndPriceBase = styled.div`
+  gap: 0.75rem;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  gap: 0.5rem;
-`
-export const NameAndPrice = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: ${(props) => props.theme['base-subtitle']};
-  line-height: 130%;
+
+  p {
+    color: ${(props) => props.theme['base-text']};
+  }
 
   span {
-    color: ${(props) => props.theme['base-text']};
-    text-align: right;
     font-weight: 700;
+    font-size: 20px;
+    color: ${(props) => props.theme['base-subtitle']};
   }
 `
-export const Handlers = styled.div`
+
+export const DescriptionPrice = styled(DescriptionAndPriceBase)`
+  p {
+    font-size: 0.875rem;
+  }
+`
+
+export const Price = styled(DescriptionAndPriceBase)`
+  text-align: right;
+`
+
+export const OrderValues = styled.div`
   display: flex;
-  gap: 0.5rem;
-
-  input {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 2rem;
-    width: 4.5rem;
-    padding: 0.5rem;
-    border-radius: 6px;
-    background: ${(props) => props.theme['base-button']};
-    border: none;
-
-    color: ${(props) => props.theme['base-title']};
-    text-align: center;
-    line-height: 130%;
-  }
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2rem;
-    padding: 0rem 0.5rem;
-    gap: 0.25rem;
-    border: none;
-    cursor: pointer;
-
-    border-radius: 6px;
-    background: ${(props) => props.theme['base-button']};
-
-    color: ${(props) => props.theme['base-text']};
-    font-size: 0.75rem;
-    line-height: 0;
-
-    span {
-      color: ${(props) => props.theme.purple};
-    }
-  }
+  justify-content: space-between;
+  padding: 1.5rem 0;
 `
 
-export const OrderValues = styled.div``
+export const FinishOrderButton = styled.button`
+  padding: 12px 8px;
+  border-radius: 6px;
+  background: ${(props) => props.theme.yellow};
+  border: none;
+  cursor: pointer;
+
+  color: ${(props) => props.theme.white};
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 160%;
+  text-transform: uppercase;
+
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${(props) => props.theme['yellow-dark']};
+  }
+`
+export const PaymentMethodsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 0.75rem;
+`
+
+export const PaymentMethodRadioButton = styled.input.attrs({
+  type: 'radio',
+})`
+  opacity: 0;
+  position: fixed;
+  width: 0;
+`
+
+export const PaymentMethodRadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 0.75rem;
+  border-radius: 6px;
+  background: ${(props) => props.theme['base-button']};
+  border: none;
+  cursor: pointer;
+
+  color: ${(props) => props.theme['base-text']};
+
+  font-size: 0.75rem;
+  line-height: 160%; /* 19.2px */
+  text-transform: uppercase;
+
+  > span {
+    display: flex;
+    align-items: center;
+    color: ${(props) => props.theme.purple};
+  }
+
+  transition: all 0.2s ease-in-out;
+
+  ${PaymentMethodRadioButton}:checked + && {
+    border-radius: 6px;
+    border: 1px solid ${(props) => props.theme.purple};
+    background: ${(props) => props.theme['purple-light']};
+  }
+
+  ${PaymentMethodRadioButton}:hover + && {
+    color: ${(props) => props.theme['base-subtitle']};
+    background: ${(props) => props.theme['base-hover']};
+  }
+`
